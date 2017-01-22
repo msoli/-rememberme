@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-@EnableConfigurationProperties({MikeIoProperties.class})
+//@EnableConfigurationProperties({MikeIoProperties.class})
 public class RemembermeApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
