@@ -75,7 +75,7 @@ public class User  implements Serializable {
     @Column(name = "reset_date", nullable = true)
     private ZonedDateTime resetDate = null;
 
-       @JsonIgnore
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "user_authority",
