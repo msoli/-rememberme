@@ -102,6 +102,7 @@ public class CustomPersistentRememberMeServices extends
         return getUserDetailsService().loadUserByUsername(login);
     }
 
+
     @Override
     protected void onLoginSuccess(HttpServletRequest request, HttpServletResponse response, Authentication
         successfulAuthentication) {

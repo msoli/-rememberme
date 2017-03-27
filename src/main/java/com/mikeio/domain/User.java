@@ -2,9 +2,6 @@ package com.mikeio.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mikeio.config.Constants;
-import lombok.Data;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -21,7 +18,7 @@ import java.util.Set;
  * A user.
  */
 @Entity
-@Data
+@Table(name = "user")
 public class User  implements Serializable {
 
     private static final long serialVersionUID = -591306528303457764L;
@@ -87,7 +84,6 @@ public class User  implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private Set<PersistentToken> persistentTokens = new HashSet<>();
 
-
     public Long getId() {
         return id;
     }
@@ -136,6 +132,7 @@ public class User  implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     public boolean getActivated() {
         return activated;

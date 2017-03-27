@@ -1,9 +1,6 @@
 package com.mikeio.config;
 
-import com.mikeio.security.AjaxAuthenticationFailureHandler;
-import com.mikeio.security.AjaxAuthenticationSuccessHandler;
-import com.mikeio.security.AjaxLogoutSuccessHandler;
-import com.mikeio.security.Http401UnauthorizedEntryPoint;
+import com.mikeio.security.*;
 
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
@@ -68,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
                 .antMatchers(HttpMethod.OPTIONS, "/**")
-                .antMatchers("/app/**/*.{js,html}");
+                .antMatchers("/app/**/*.{js,html}", "/images/*.jpg");
     }
 
     @Override
@@ -103,8 +100,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .disable()
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/api/register").permitAll()
-//                .antMatchers("/api/activate").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/api/authentication").permitAll()
 //                .antMatchers("/api/authenticate").permitAll()
 //                .antMatchers("/api/account/reset_password/init").permitAll()
 //                .antMatchers("/api/account/reset_password/finish").permitAll()
