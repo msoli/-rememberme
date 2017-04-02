@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
@@ -9,15 +9,20 @@
 
 <p>
     <a href="securePage.html">Ir a seccion retringida</a>
+
+<form th:action="@{/api/logout}" method="POST">
+    <input name="submit" type="submit" value="Logout"/>
+</form>
+
 </p>
 <a href="">www.mikeio.com</a>
 
 <form th:action="@{/api/authentication}" method="POST">
     <input type="text" name="j_username" value=""/>
     <input type="password" name="j_password" value=""/>
-    <input type="checkbox" name="remember-me" />
+    <input type="checkbox" name="remember-me"/>
     <input name="submit" type="submit"
-           value="submit" />
+           value="submit"/>
 </form>
 </body>
 </html>

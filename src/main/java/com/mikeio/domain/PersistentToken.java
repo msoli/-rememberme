@@ -26,13 +26,13 @@ public class PersistentToken implements Serializable {
     private static final int MAX_USER_AGENT_LEN = 255;
 
     @Id
-    @Size( max = 20)
+    @Size( max = 24)
     private String series;
 
     @JsonIgnore
     @NotNull
     @Column(name = "token_value", nullable = false)
-    @Size( max = 20)
+    @Size( max = 24)
     private String tokenValue;
 
     @Column(name = "token_date")

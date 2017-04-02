@@ -1,17 +1,28 @@
 debug: true
 logging:
   level:
-    root: DEBUG
+    root: INFO
 server:
-  porT: 9001
+  port: 8443
+  ssl:
+      key-store: C:\desarrollo\rememberme\lib\keystore.jks
+      key-store-password: password
+      key-password: password
   error:
       whitelabel:
           enabled: false
   context-path: /rememberme/
+  session:
+      cookie:
+          http-only: true
+
+security:
+    basic:
+        enabled: false
 
 spring:
-    profiles:
-        active: dev
+#    profiles:
+#        active: dev
     thymeleaf:
         cache: false
     resources:
@@ -36,6 +47,7 @@ spring:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
         show-sql: true
+
 
 
 

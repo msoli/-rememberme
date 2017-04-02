@@ -6,23 +6,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-//@EnableConfigurationProperties({MikeIoProperties.class})
+
 public class RemembermeApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RemembermeApplication.class, args);
-	}
 
-
-	/**
-	 * Used when run as WAR
-	 */
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(RemembermeApplication.class);
-	}
+    /**
+     * Used when run as WAR
+     */
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(JhipsterSampleApplicationNg2App.class);
+    }
 
 
 }

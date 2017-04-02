@@ -19,6 +19,7 @@ import org.springframework.security.data.repository.query.SecurityEvaluationCont
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 @Configuration
@@ -45,21 +46,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Inject
     private RememberMeServices rememberMeServices;
 
+    @Inject
+    private  AuthenticationManagerBuilder authenticationManagerBuilder;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Inject
-    public void configureGlobal(AuthenticationManagerBuilder auth) {
+//    @Inject
+//    public void configureGlobal(AuthenticationManagerBuilder auth) {
+//        try {
+//            auth
+//                    .userDetailsService(userDetailsService)
+//                    .passwordEncoder(passwordEncoder());
+//        } catch (Exception e) {
+//            throw new BeanInitializationException("Security configuration failed", e);
+//        }
+//    }
+
+    @PostConstruct
+    public void init() {
         try {
-            auth
+            authenticationManagerBuilder
                     .userDetailsService(userDetailsService)
                     .passwordEncoder(passwordEncoder());
         } catch (Exception e) {
             throw new BeanInitializationException("Security configuration failed", e);
         }
     }
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -100,8 +116,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .disable()
                 .and()
                 .authorizeRequests()
+//                .antMatchers("/").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/api/authentication").permitAll()
 //                .antMatchers("/api/authenticate").permitAll()
 //                .antMatchers("/api/account/reset_password/init").permitAll()
 //                .antMatchers("/api/account/reset_password/finish").permitAll()
